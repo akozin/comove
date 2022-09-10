@@ -11,11 +11,23 @@ import MapKit
 struct MovementView: View {
     @Environment(\.presentationMode) private var presentationMode
 
-    private let region: Binding = Binding.constant( MKCoordinateRegion(center: .init(latitude: 55.75583, longitude: 37.61778), latitudinalMeters: 1000, longitudinalMeters: 1000))
+    private let mapCenter = CLLocationCoordinate2D(
+        latitude: 55.75583, longitude: 37.61778
+    )
+
+    private var mapRegion: Binding<MapRegion> {
+        Binding.constant(
+            MapRegion(
+                center: mapCenter,
+                latitudinalMeters: 1000,
+                longitudinalMeters: 1000
+            )
+        )
+    }
     
     var body: some View {
         NavigationView {
-            Map(coordinateRegion: region)
+            MapViewWrapper(region: mapRegion)
                 .toolbar {
                     ToolbarItem {
                         Button("Cancel") {
