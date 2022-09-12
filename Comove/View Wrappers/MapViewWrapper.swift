@@ -10,7 +10,7 @@ import SwiftUI
 import MapKit
 import Combine
 
-// Separate interface from implementation
+/// Abstract map region.
 typealias MapRegion = MKCoordinateRegion
 
 struct MapViewWrapper: UIViewControllerRepresentable {
@@ -21,7 +21,8 @@ struct MapViewWrapper: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> MapViewController {
-        let vc = MapViewController(regionPublisher: regionPublisher)
+        let vc = MapViewController(regionPublisher: regionPublisher,
+                                   mapView: MKMapView())
         return vc
     }
     
@@ -30,18 +31,29 @@ struct MapViewWrapper: UIViewControllerRepresentable {
     }
 }
 
+// MARK: - Map view controller
+
+/// Abstract map view.
+fileprivate protocol MapView: UIView {
+    var frame: CGRect { get set }
+    var region: MapRegion { get set }
+    var showsUserLocation: Bool { get set }
+}
+
+extension MKMapView: MapView {}
+
 class MapViewController: UIViewController {
-    private var mapView: MKMapView?
+    private let mapView: MapView
     private var cancellable: Cancellable?
     
-    init(regionPublisher: AnyPublisher<MapRegion, Never>) {
+    fileprivate init(regionPublisher: AnyPublisher<MapRegion, Never>, mapView: MapView) {
+        self.mapView = mapView
         super.init(nibName: nil, bundle: nil)
-        self.mapView = MKMapView(frame: view.frame)
-        if let mapView = mapView {
-            view.addSubview(mapView)
-            mapView.showsUserLocation = true
-            subscribeToRegionUpdates(regionPublisher)
-        }
+        
+        self.mapView.frame = view.frame
+        view.addSubview(mapView)
+        mapView.showsUserLocation = true
+        subscribeToRegionUpdates(regionPublisher)
     }
 
     required init?(coder: NSCoder) {
@@ -56,11 +68,12 @@ class MapViewController: UIViewController {
         cancellable?.cancel()
         cancellable = regionPublisher
             .sink { _ in } receiveValue: { [weak self] region in
-            self?.mapView?.region = region
+            self?.mapView.region = region
         }
     }
 }
 
+// MARK: - Previews
 
 struct MapViewWrapper_Previews: PreviewProvider {
     static let center = CLLocationCoordinate2D(
