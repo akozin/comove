@@ -7,27 +7,27 @@
 
 import SwiftUI
 import MapKit
+import Combine
 
 struct MovementView: View {
     @Environment(\.presentationMode) private var presentationMode
-
-    private let mapCenter = CLLocationCoordinate2D(
-        latitude: 55.75583, longitude: 37.61778
-    )
-
-    private var mapRegion: Binding<MapRegion> {
-        Binding.constant(
-            MapRegion(
-                center: mapCenter,
-                latitudinalMeters: 1000,
-                longitudinalMeters: 1000
-            )
-        )
+    
+    private var mapRegionPublisher: AnyPublisher<MapRegion, Never> {
+        LocationService.shared.locationPublisher
+            .map { location in
+                let distance: CLLocationDistance = 1000
+                return MapRegion(
+                    center: location.coordinate,
+                    latitudinalMeters: distance,
+                    longitudinalMeters: distance
+                )
+            }
+            .eraseToAnyPublisher()
     }
     
     var body: some View {
         NavigationView {
-            MapViewWrapper(region: mapRegion)
+            MapViewWrapper(regionPublisher: mapRegionPublisher)
                 .toolbar {
                     ToolbarItem {
                         Button("Cancel") {
@@ -37,6 +37,18 @@ struct MovementView: View {
                 }
                 .navigationTitle("Movement")
                 .navigationBarTitleDisplayMode(.inline)
+                .onAppear {
+                    Task {
+                        let isAccessGranted = await LocationService.shared.requestAccess()
+                        if isAccessGranted {
+                            LocationService.shared.startUpdatingLocation()
+                        }
+                    }
+                }
+                .onDisappear {
+                    LocationService.shared.stopUpdatingLocation()
+                }
+                
         }
     }
 }

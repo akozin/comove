@@ -18,6 +18,8 @@
 		6F6FFAFF28B0DCB300DABF49 /* ComoveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFAFE28B0DCB300DABF49 /* ComoveUITests.swift */; };
 		6F6FFB0128B0DCB300DABF49 /* ComoveUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFB0028B0DCB300DABF49 /* ComoveUITestsLaunchTests.swift */; };
 		6F6FFB0E28B12E9A00DABF49 /* MovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFB0D28B12E9A00DABF49 /* MovementView.swift */; };
+		6F98001A28CCA29700AB107C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F98001928CCA29700AB107C /* MapKit.framework */; };
+		6F98001D28CCA4EE00AB107C /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F98001C28CCA4EE00AB107C /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		6F6FFAFE28B0DCB300DABF49 /* ComoveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComoveUITests.swift; sourceTree = "<group>"; };
 		6F6FFB0028B0DCB300DABF49 /* ComoveUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComoveUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6F6FFB0D28B12E9A00DABF49 /* MovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementView.swift; sourceTree = "<group>"; };
+		6F98001928CCA29700AB107C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6F98001C28CCA4EE00AB107C /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F98001A28CCA29700AB107C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +99,7 @@
 				6F6FFAF328B0DCB300DABF49 /* ComoveTests */,
 				6F6FFAFD28B0DCB300DABF49 /* ComoveUITests */,
 				6F6FFADC28B0DCAF00DABF49 /* Products */,
+				6F98001828CCA29700AB107C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +116,7 @@
 		6F6FFADD28B0DCAF00DABF49 /* Comove */ = {
 			isa = PBXGroup;
 			children = (
+				6F98001B28CCA4D800AB107C /* Services */,
 				6F5CC45828CB8AF9009F2655 /* View Wrappers */,
 				6F6FFADE28B0DCAF00DABF49 /* ComoveApp.swift */,
 				6F6FFAE028B0DCAF00DABF49 /* ContentView.swift */,
@@ -145,6 +152,22 @@
 				6F6FFB0028B0DCB300DABF49 /* ComoveUITestsLaunchTests.swift */,
 			);
 			path = ComoveUITests;
+			sourceTree = "<group>";
+		};
+		6F98001828CCA29700AB107C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F98001928CCA29700AB107C /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F98001B28CCA4D800AB107C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6F98001C28CCA4EE00AB107C /* LocationService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F98001D28CCA4EE00AB107C /* LocationService.swift in Sources */,
 				6F6FFAEB28B0DCB300DABF49 /* Comove.xcdatamodeld in Sources */,
 				6F6FFB0E28B12E9A00DABF49 /* MovementView.swift in Sources */,
 				6F6FFAE828B0DCB300DABF49 /* Persistence.swift in Sources */,
@@ -444,9 +468,12 @@
 				DEVELOPMENT_TEAM = LW3PL5B242;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location access is needed to record your activities.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location access is needed to record your activities.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "location-services";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -474,9 +501,12 @@
 				DEVELOPMENT_TEAM = LW3PL5B242;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location access is needed to record your activities.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location access is needed to record your activities.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "location-services";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
