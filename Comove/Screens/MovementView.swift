@@ -15,7 +15,7 @@ struct MovementView: View {
     private var mapRegionPublisher: AnyPublisher<MapRegion, Never> {
         LocationService.shared.locationPublisher
             .map { location in
-                let distance: CLLocationDistance = 1000
+                let distance: CLLocationDistance = 500
                 return MapRegion(
                     center: location.coordinate,
                     latitudinalMeters: distance,
