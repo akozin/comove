@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Comove
+
+  Created by akozin on 14.09.2022.
+  
+*/
+
+/* Verb: start the workout. */
+"Start" = "Начать";
+/* Noun: cancel the workout. */
+"Cancel" = "Отмена";

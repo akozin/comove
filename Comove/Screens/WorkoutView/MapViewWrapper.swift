@@ -14,21 +14,21 @@ import Combine
 typealias MapRegion = MKCoordinateRegion
 
 struct MapViewWrapper: UIViewControllerRepresentable {
-    private let regionPublisher: AnyPublisher<MapRegion, Never>
-    
-    init(regionPublisher: AnyPublisher<MapRegion, Never>) {
-        self.regionPublisher = regionPublisher
-    }
+    @Binding var showRoute: Bool
+    let regionPublisher: AnyPublisher<MapRegion, Never>
     
     func makeUIViewController(context: Context) -> MapViewController {
         let vc = MapViewController(regionPublisher: regionPublisher,
-                                   mapView: MKMapView(),
-                                   routeRenderer: MapRouteLineRenderer())
+                                   mapView: MKMapView())
         return vc
     }
     
     func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
-        //
+        if showRoute {
+            uiViewController.setRouteRenderer(MapRouteLineRenderer())
+        } else {
+            uiViewController.setRouteRenderer(nil)
+        }
     }
 }
 
@@ -48,25 +48,29 @@ struct MapViewWrapper: UIViewControllerRepresentable {
 class MapViewController: UIViewController {
     private let mapView: MKMapView
     private var cancellable: Cancellable?
-    private let routeRenderer: MapRouteRenderer
+    private var routeRenderer: MapRouteRenderer?
     private let regionPublisher: AnyPublisher<MapRegion, Never>
         
-    fileprivate init(regionPublisher: AnyPublisher<MapRegion, Never>,
-                     mapView: MKMapView, routeRenderer: MapRouteRenderer) {
+    fileprivate init(regionPublisher: AnyPublisher<MapRegion, Never>, mapView: MKMapView) {
         self.mapView = mapView
-        self.routeRenderer = routeRenderer
         self.regionPublisher = regionPublisher
             .share()
             .eraseToAnyPublisher()
         super.init(nibName: nil, bundle: nil)
         
         setupMapView()
-        setupMapRouteRenderer()
         subscribeToRegionUpdates(self.regionPublisher)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setRouteRenderer(_ routeRenderer: MapRouteRenderer?) {
+        self.routeRenderer = routeRenderer
+        if routeRenderer != nil {
+            setupMapRouteRenderer()
+        }
     }
     
     private func setupMapView() {
@@ -76,11 +80,13 @@ class MapViewController: UIViewController {
     }
     
     private func setupMapRouteRenderer() {
-        routeRenderer.setMap(mapView)
+        guard let renderer = routeRenderer else { return }
+        
+        renderer.setMap(mapView)
         let locationPublisher = regionPublisher
             .map { $0.center }
             .eraseToAnyPublisher()
-        routeRenderer.setLocationPublisher(locationPublisher)
+        renderer.setLocationPublisher(locationPublisher)
     }
     
     private func subscribeToRegionUpdates(_ regionPublisher: AnyPublisher<MapRegion, Never>) {
@@ -96,6 +102,7 @@ class MapViewController: UIViewController {
 // MARK: - Previews
 
 struct MapViewWrapper_Previews: PreviewProvider {
+    static var showRoute = Binding<Bool>.constant(false)
     static let center = CLLocationCoordinate2D(
         latitude: 55.75583, longitude: 37.61778
     )
@@ -111,6 +118,6 @@ struct MapViewWrapper_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        MapViewWrapper(regionPublisher: regionPublisher)
+        MapViewWrapper(showRoute: showRoute, regionPublisher: regionPublisher)
     }
 }

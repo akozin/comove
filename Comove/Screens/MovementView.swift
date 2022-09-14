@@ -24,30 +24,39 @@ struct MovementView: View {
             }
             .eraseToAnyPublisher()
     }
+
+    @State private var startWorkout: Bool = false
     
     var body: some View {
         NavigationView {
-            MapViewWrapper(regionPublisher: mapRegionPublisher)
-                .toolbar {
-                    ToolbarItem {
-                        Button("Cancel") {
-                            presentationMode.wrappedValue.dismiss()
-                        }
+            ZStack(alignment: .bottom) {
+                MapViewWrapper(showRoute: $startWorkout,
+                               regionPublisher: mapRegionPublisher)
+                StartButtonView(action: {
+                    startWorkout.toggle()
+                })
+                .padding(.bottom, 12)
+            }
+            .toolbar {
+                ToolbarItem {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
-                .navigationTitle("Movement")
-                .navigationBarTitleDisplayMode(.inline)
-                .onAppear {
-                    Task {
-                        let isAccessGranted = await LocationService.shared.requestAccess()
-                        if isAccessGranted {
-                            LocationService.shared.startUpdatingLocation()
-                        }
+            }
+            .navigationTitle("Movement")
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                Task {
+                    let isAccessGranted = await LocationService.shared.requestAccess()
+                    if isAccessGranted {
+                        LocationService.shared.startUpdatingLocation()
                     }
                 }
-                .onDisappear {
-                    LocationService.shared.stopUpdatingLocation()
-                }
+            }
+            .onDisappear {
+                LocationService.shared.stopUpdatingLocation()
+        }
                 
         }
     }
@@ -55,6 +64,10 @@ struct MovementView: View {
 
 struct MovementView_Previews: PreviewProvider {
     static var previews: some View {
-        MovementView()
+        Group {
+            MovementView()
+            MovementView()
+                .previewDevice("iPhone 8")
+        }
     }
 }
