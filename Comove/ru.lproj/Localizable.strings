@@ -7,6 +7,10 @@
 */
 
 /* Verb: start the workout. */
-"Start" = "Начать";
+"Start" = "Старт";
+/* Verb: stop the workout. */
+"Stop" = "Стоп";
 /* Noun: cancel the workout. */
 "Cancel" = "Отмена";
+/* Noun: title of workout screen. */
+"Workout" = "Тренировка";

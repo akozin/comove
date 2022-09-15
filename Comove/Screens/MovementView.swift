@@ -25,16 +25,17 @@ struct MovementView: View {
             .eraseToAnyPublisher()
     }
 
-    @State private var startWorkout: Bool = false
+    @State private var isWorkoutStarted: Bool = false
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                MapViewWrapper(showRoute: $startWorkout,
+                MapViewWrapper(showRoute: $isWorkoutStarted,
                                regionPublisher: mapRegionPublisher)
-                StartButtonView(action: {
-                    startWorkout.toggle()
-                })
+                StartButtonView(
+                    label: isWorkoutStarted ? "Stop" : "Start",
+                    action: { isWorkoutStarted.toggle() }
+                )
                 .padding(.bottom, 12)
             }
             .toolbar {
@@ -44,7 +45,7 @@ struct MovementView: View {
                     }
                 }
             }
-            .navigationTitle("Movement")
+            .navigationTitle("Workout")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 Task {

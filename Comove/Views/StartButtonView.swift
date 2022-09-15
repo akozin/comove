@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StartButtonView: View {
+    var label: String
     let action: () -> Void
     
     private var primaryColor: Color {
@@ -21,10 +22,11 @@ struct StartButtonView: View {
                 .frame(width: 80, height: 80, alignment: .center)
                 .foregroundColor(primaryColor)
                 .overlay(
-                    Text("Start")
+                    Text(LocalizedStringKey(label))
                         .lineLimit(1)
                         .truncationMode(.tail)
-                        .foregroundColor(.white),
+                        .foregroundColor(.white)
+                        .padding(5),
                     alignment: .center
                 )
         }
@@ -32,9 +34,10 @@ struct StartButtonView: View {
 }
 
 struct StartButtonView_Previews: PreviewProvider {
+    static var label: String = "Stop"
     static var previews: some View {
         Group {
-            StartButtonView(action: {})
+            StartButtonView(label: label, action: {})
         }
     }
 }
