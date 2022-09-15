@@ -20,11 +20,13 @@ class LocationService: NSObject {
     
     private let locationManager = CLLocationManager()
     private var authorizationStatusContinuation: CheckedContinuation<Bool, Never>?
-    
+    /// Minimum required distance between obtained locations.
+    private let kMinDistanceInMeters: CLLocationDistance = 10
     
     override init() {
         super.init()
         
+        locationManager.distanceFilter = kMinDistanceInMeters
         locationManager.delegate = self
     }
     
