@@ -32,11 +32,17 @@ struct MovementView: View {
             ZStack(alignment: .bottom) {
                 MapViewWrapper(showRoute: $isWorkoutStarted,
                                regionPublisher: mapRegionPublisher)
+                WorkoutIndicatorsBarView(
+                    speed: .constant("12 km/h"),
+                    distance: .constant("1.2 km"),
+                    pace: .constant("6 min/km"),
+                    duration: .constant("1h 20min")
+                )
                 StartButtonView(
                     label: isWorkoutStarted ? "Stop" : "Start",
                     action: { isWorkoutStarted.toggle() }
                 )
-                .padding(.bottom, 12)
+                .padding(.bottom)
             }
             .toolbar {
                 ToolbarItem {
