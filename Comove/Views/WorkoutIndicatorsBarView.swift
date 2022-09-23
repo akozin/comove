@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct WorkoutIndicatorsBarView: View {
-    @Binding var speed: String
-    @Binding var distance: String
-    @Binding var pace: String
-    @Binding var duration: String
+    var speed: String
+    var distance: String
+    var pace: String
+    var duration: String
     
     var body: some View {
         GeometryReader { proxy in
@@ -68,20 +68,20 @@ struct WorkoutIndicatorsBarView: View {
 }
 
 struct WorkoutIndicatorsBarView_Previews: PreviewProvider {
-    @State static var speed = "10 km/h"
-    @State static var distance = "1.2 km"
-    @State static var pace = "6 min/km"
-    @State static var duration = "1h 20min"
+    static var speed = "10 km/h"
+    static var distance = "1.2 km"
+    static var pace = "6 min/km"
+    static var duration = "1h 20min"
     static var previews: some View {
         Group {
-            WorkoutIndicatorsBarView(speed: $speed,
-                                     distance: $distance,
-                                     pace: $pace,
-                                     duration: $duration)
-            WorkoutIndicatorsBarView(speed: $speed,
-                                     distance: $distance,
-                                     pace: $pace,
-                                     duration: $duration)
+            WorkoutIndicatorsBarView(speed: speed,
+                                     distance: distance,
+                                     pace: pace,
+                                     duration: duration)
+            WorkoutIndicatorsBarView(speed: speed,
+                                     distance: distance,
+                                     pace: pace,
+                                     duration: duration)
             .previewDevice("iPhone SE (1st generation)")
         }
     }

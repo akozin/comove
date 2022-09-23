@@ -11,6 +11,9 @@ import Combine
 
 struct MovementView: View {
     @Environment(\.presentationMode) private var presentationMode
+    @StateObject private var viewModel = MovementViewModel(
+        locationPublisher: LocationService.shared.locationPublisher
+    )
     
     private var mapRegionPublisher: AnyPublisher<MapRegion, Never> {
         LocationService.shared.locationPublisher
@@ -24,23 +27,21 @@ struct MovementView: View {
             }
             .eraseToAnyPublisher()
     }
-
-    @State private var isWorkoutStarted: Bool = false
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                MapViewWrapper(showRoute: $isWorkoutStarted,
+                MapViewWrapper(showRoute: $viewModel.isWorkoutStarted,
                                regionPublisher: mapRegionPublisher)
                 WorkoutIndicatorsBarView(
-                    speed: .constant("12 km/h"),
-                    distance: .constant("1.2 km"),
-                    pace: .constant("6 min/km"),
-                    duration: .constant("1h 20min")
+                    speed: viewModel.speed,
+                    distance: viewModel.distance,
+                    pace: viewModel.pace,
+                    duration: viewModel.duration
                 )
                 StartButtonView(
-                    label: isWorkoutStarted ? "Stop" : "Start",
-                    action: { isWorkoutStarted.toggle() }
+                    label: viewModel.isWorkoutStarted ? "Stop" : "Start",
+                    action: { viewModel.isWorkoutStarted.toggle() }
                 )
                 .padding(.bottom)
             }

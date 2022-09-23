@@ -14,3 +14,8 @@
 "Cancel" = "Отмена";
 /* Noun: title of workout screen. */
 "Workout" = "Тренировка";
+
+/* Noun: pace minute per kilometer unit value. */
+"pace_min_km_unit" = "мин/км";
+/* Noun: pace minute per mile unit value. */
+"pace_min_mile_unit" = "мин/миля";

@@ -24,9 +24,9 @@ struct MapViewWrapper: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
-        if showRoute {
+        if showRoute && uiViewController.routeRenderer == nil {
             uiViewController.setRouteRenderer(MapRouteLineRenderer())
-        } else {
+        } else if !showRoute && uiViewController.routeRenderer != nil {
             uiViewController.setRouteRenderer(nil)
         }
     }
@@ -48,7 +48,7 @@ struct MapViewWrapper: UIViewControllerRepresentable {
 class MapViewController: UIViewController {
     private let mapView: MKMapView
     private var cancellable: Cancellable?
-    private var routeRenderer: MapRouteRenderer?
+    private(set) var routeRenderer: MapRouteRenderer?
     private let regionPublisher: AnyPublisher<MapRegion, Never>
         
     fileprivate init(regionPublisher: AnyPublisher<MapRegion, Never>, mapView: MKMapView) {

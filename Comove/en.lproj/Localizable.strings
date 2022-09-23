@@ -5,3 +5,8 @@
   Created by akozin on 14.09.2022.
   
 */
+
+/* Noun: pace minute per kilometer unit value. */
+"pace_min_km_unit" = "min/km";
+/* Noun: pace minute per mile unit value. */
+"pace_min_mile_unit" = "min/mile";

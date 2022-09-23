@@ -12,13 +12,14 @@
 		6F6E116028D1B5B700B50B92 /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E115F28D1B5B700B50B92 /* StartButtonView.swift */; };
 		6F6E116328D1C3DC00B50B92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F6E116528D1C3DC00B50B92 /* Localizable.strings */; };
 		6F6E116A28D3330B00B50B92 /* WorkoutIndicatorsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E116928D3330B00B50B92 /* WorkoutIndicatorsBarView.swift */; };
+		6F6E116C28D3731600B50B92 /* MovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E116B28D3731600B50B92 /* MovementViewModel.swift */; };
+		6F6E116E28D376CA00B50B92 /* MovementViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6E116D28D376CA00B50B92 /* MovementViewModelTest.swift */; };
 		6F6FFADF28B0DCAF00DABF49 /* ComoveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFADE28B0DCAF00DABF49 /* ComoveApp.swift */; };
 		6F6FFAE128B0DCAF00DABF49 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFAE028B0DCAF00DABF49 /* ContentView.swift */; };
 		6F6FFAE328B0DCB300DABF49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6FFAE228B0DCB300DABF49 /* Assets.xcassets */; };
 		6F6FFAE628B0DCB300DABF49 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F6FFAE528B0DCB300DABF49 /* Preview Assets.xcassets */; };
 		6F6FFAE828B0DCB300DABF49 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFAE728B0DCB300DABF49 /* Persistence.swift */; };
 		6F6FFAEB28B0DCB300DABF49 /* Comove.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFAE928B0DCB300DABF49 /* Comove.xcdatamodeld */; };
-		6F6FFAF528B0DCB300DABF49 /* ComoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFAF428B0DCB300DABF49 /* ComoveTests.swift */; };
 		6F6FFAFF28B0DCB300DABF49 /* ComoveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFAFE28B0DCB300DABF49 /* ComoveUITests.swift */; };
 		6F6FFB0128B0DCB300DABF49 /* ComoveUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFB0028B0DCB300DABF49 /* ComoveUITestsLaunchTests.swift */; };
 		6F6FFB0E28B12E9A00DABF49 /* MovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6FFB0D28B12E9A00DABF49 /* MovementView.swift */; };
@@ -50,6 +51,8 @@
 		6F6E116428D1C3DC00B50B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6F6E116628D1C3E100B50B92 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6F6E116928D3330B00B50B92 /* WorkoutIndicatorsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutIndicatorsBarView.swift; sourceTree = "<group>"; };
+		6F6E116B28D3731600B50B92 /* MovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
+		6F6E116D28D376CA00B50B92 /* MovementViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementViewModelTest.swift; sourceTree = "<group>"; };
 		6F6FFADB28B0DCAF00DABF49 /* Comove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6FFADE28B0DCAF00DABF49 /* ComoveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComoveApp.swift; sourceTree = "<group>"; };
 		6F6FFAE028B0DCAF00DABF49 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,7 +61,6 @@
 		6F6FFAE728B0DCB300DABF49 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		6F6FFAEA28B0DCB300DABF49 /* Comove.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Comove.xcdatamodel; sourceTree = "<group>"; };
 		6F6FFAF028B0DCB300DABF49 /* ComoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F6FFAF428B0DCB300DABF49 /* ComoveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComoveTests.swift; sourceTree = "<group>"; };
 		6F6FFAFA28B0DCB300DABF49 /* ComoveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComoveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6FFAFE28B0DCB300DABF49 /* ComoveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComoveUITests.swift; sourceTree = "<group>"; };
 		6F6FFB0028B0DCB300DABF49 /* ComoveUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComoveUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				6F6FFB0D28B12E9A00DABF49 /* MovementView.swift */,
+				6F6E116B28D3731600B50B92 /* MovementViewModel.swift */,
 				6F5CC45928CB8B37009F2655 /* MapViewWrapper.swift */,
 				6F6E115828CF6C3D00B50B92 /* MapRouteRenderer.swift */,
 			);
@@ -169,7 +172,7 @@
 		6F6FFAF328B0DCB300DABF49 /* ComoveTests */ = {
 			isa = PBXGroup;
 			children = (
-				6F6FFAF428B0DCB300DABF49 /* ComoveTests.swift */,
+				6F6E116D28D376CA00B50B92 /* MovementViewModelTest.swift */,
 			);
 			path = ComoveTests;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			files = (
 				6F6E116028D1B5B700B50B92 /* StartButtonView.swift in Sources */,
 				6F98001D28CCA4EE00AB107C /* LocationService.swift in Sources */,
+				6F6E116C28D3731600B50B92 /* MovementViewModel.swift in Sources */,
 				6F6E116A28D3330B00B50B92 /* WorkoutIndicatorsBarView.swift in Sources */,
 				6F6FFAEB28B0DCB300DABF49 /* Comove.xcdatamodeld in Sources */,
 				6F6E115928CF6C3D00B50B92 /* MapRouteRenderer.swift in Sources */,
@@ -348,7 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F6FFAF528B0DCB300DABF49 /* ComoveTests.swift in Sources */,
+				6F6E116E28D376CA00B50B92 /* MovementViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +621,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW3PL5B242;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.akozin.ComoveUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -635,6 +640,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LW3PL5B242;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.akozin.ComoveUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
