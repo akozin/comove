@@ -60,14 +60,17 @@ struct MovementView: View {
                 .onDisappear {
                     LocationService.shared.stopUpdatingLocation()
                 }
-                WorkoutIndicatorsBarView(
-                    speed: viewModel.speed,
-                    distance: viewModel.distance,
-                    pace: viewModel.pace,
-                    duration: viewModel.duration
-                )
-            }
                 
+                if viewModel.isWorkoutStarted {
+                    WorkoutIndicatorsBarView(
+                        speed: viewModel.speed,
+                        distance: viewModel.distance,
+                        pace: viewModel.pace,
+                        duration: viewModel.duration
+                    )
+                }
+            }
+            
         }
     }
 }
