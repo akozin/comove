@@ -14,57 +14,49 @@ struct WorkoutIndicatorsBarView: View {
     var duration: String
     
     var body: some View {
-        GeometryReader { proxy in
+        VStack {
             VStack {
-                HStack {
-                    VStack {
-                        Text("Speed")
-                            .font(.title3)
-                            .bold()
-                        Spacer()
-                        Text(speed)
-                            .bold()
-                    }
-                    Spacer()
-                    VStack {
-                        Text("Dist.")
-                            .font(.title3)
-                            .bold()
-                        Spacer()
-                        Text(distance)
-                            .bold()
-                    }
-                    Spacer()
-                    VStack {
-                        Text("Pace")
-                            .font(.title3)
-                            .bold()
-                        Spacer()
-                        Text(pace)
-                            .bold()
-                    }
-                    Spacer()
-                    VStack {
-                        Text("Dur.")
-                            .font(.title3)
-                            .bold()
-                        Spacer()
-                        Text(duration)
-                            .bold()
-                    }
-                }
-                .padding(.all)
+                Text(duration)
+                    .font(.largeTitle)
+                    .bold()
+                Text("Duration")
+                    .font(.title3)
             }
-            .frame(width: proxy.size.width, height: 100,
-                   alignment: .center)
-            .background(
-                Rectangle()
-                    .foregroundColor(.gray)
-                    .opacity(0.85),
-                alignment: .center
-            )
+            .padding(.bottom)
+            
+            HStack {
+                VStack {
+                    Text(distance)
+                        .bold()
+                        .padding(.bottom, 1)
+                    Text("Distance")
+                }
+                .frame(maxWidth: .infinity)
+                VStack {
+                    Text(pace)
+                        .bold()
+                        .padding(.bottom, 1)
+                    Text("Pace")
+                }
+                .frame(maxWidth: .infinity)
+                VStack {
+                    Text(speed)
+                        .bold()
+                        .padding(.bottom, 1)
+                    Text("Speed")
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .padding(.horizontal)
         }
+        .background(
+            Rectangle()
+                .foregroundColor(.gray)
+                .opacity(0.85),
+            alignment: .center
+        )
     }
+
 }
 
 struct WorkoutIndicatorsBarView_Previews: PreviewProvider {
@@ -78,11 +70,11 @@ struct WorkoutIndicatorsBarView_Previews: PreviewProvider {
                                      distance: distance,
                                      pace: pace,
                                      duration: duration)
-            WorkoutIndicatorsBarView(speed: speed,
-                                     distance: distance,
-                                     pace: pace,
-                                     duration: duration)
-            .previewDevice("iPhone SE (1st generation)")
+//            WorkoutIndicatorsBarView(speed: speed,
+//                                     distance: distance,
+//                                     pace: pace,
+//                                     duration: duration)
+//            .previewDevice("iPhone SE (1st generation)")
         }
     }
 }
