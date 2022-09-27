@@ -93,8 +93,8 @@ class MapViewController: UIViewController {
         cancellable?.cancel()
         cancellable = regionPublisher.sink { [weak self] region in
             guard let self = self else { return }
-            
-            self.mapView.region = region
+
+            self.mapView.setRegion(region, animated: true)
         }
     }
 }
