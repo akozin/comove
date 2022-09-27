@@ -32,6 +32,7 @@ class MovementViewModel: ObservableObject {
     init(locationPublisher: AnyPublisher<CLLocation, Never>) {
         self.locationPublisher = locationPublisher
         self.subscribeToLocationPublisher()
+        self.scheduleTimerForDurationUpdate()
     }
     
     private func subscribeToLocationPublisher() {
@@ -40,9 +41,14 @@ class MovementViewModel: ObservableObject {
   
             self.updateDistance(location: location)
             self.updateSpeedAndPace(location: location)
-            self.updateDuration()
             
             self.lastObtainedLocation = location
+        }
+    }
+    
+    private func scheduleTimerForDurationUpdate() {
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            self?.updateDuration()
         }
     }
     
