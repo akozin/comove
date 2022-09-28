@@ -54,25 +54,21 @@ class MovementViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.pace, "")
     }
     
-    func testDuration_withDelayedLocationObtaining_shouldReturnDurationSinceMovementStart() {
+    func testDuration_withOngoingWorkout_shouldReturnDurationSinceWorkoutStart() {
         // given
-        let metersPerSecondSpeed: CLLocationSpeed = 2.7
-        let location = makeLocation(speed: metersPerSecondSpeed)
-        let exp = expectation(description: "")
-        let delayInSeconds: Double = 1
-        let publisher = Future<CLLocation, Never>({ promise in
-            DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
-                promise(.success(location))
-                exp.fulfill()
-            }
-        }).eraseToAnyPublisher()
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
         let viewModel = MovementViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = true
+        let exp = expectation(description: "")
+        let delayInSeconds: Double = 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
+            exp.fulfill()
+        }
         // then
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 0
-        let formattedDelay = formatter.string(from: NSNumber(floatLiteral: delayInSeconds))!
+        let formatter = secondsNumberFormatter()
+        let delayNumber = NSNumber(floatLiteral: delayInSeconds)
+        let formattedDelay = formatter.string(from: delayNumber)!
         wait(for: [exp], timeout: 5.0)
         XCTAssertEqual(viewModel.duration, "00:00:0\(formattedDelay)")
     }
@@ -106,6 +102,26 @@ class MovementViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.distance, "6.92mi")
     }
     
+    func testDuration_withStoppedWorkout_shouldBeEqualsZero() {
+        // given
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
+        let viewModel = MovementViewModel(locationPublisher: publisher)
+        // when
+        viewModel.isWorkoutStarted = false
+        // then
+        XCTAssertEqual(viewModel.duration, "00:00:00")
+    }
+    
+    func testDuration_withStartedWorkout_shouldEqualsZero() {
+        // given
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
+        let viewModel = MovementViewModel(locationPublisher: publisher)
+        // when
+        viewModel.isWorkoutStarted = true
+        // then
+        XCTAssertEqual(viewModel.duration, "00:00:00")
+    }
+    
     // MARK: - Private
     
     private func makeLocation(speed: CLLocationSpeed = 2.7,
@@ -119,6 +135,12 @@ class MovementViewModelTest: XCTestCase {
                           speedAccuracy: 1,
                           timestamp: .now
         )
+    }
+    
+    private func secondsNumberFormatter() -> NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 0
+        return formatter
     }
 
 }

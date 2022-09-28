@@ -19,24 +19,29 @@ class MovementViewModel: ObservableObject {
     private var movementStartDate: Date?
     @Published var isWorkoutStarted: Bool = false {
         didSet {
+            movementStartDate = Date()
+            updateDuration()
             if isWorkoutStarted {
-                movementStartDate = Date()
+                startDurationUpdateTimer()
+            } else {
+                stopDurationUpdateTimer()
             }
         }
     }
     /// Total travelled distance.
     private var distanceValue: CLLocationDistance = 0
     private var lastObtainedLocation: CLLocation?
-    private var cancellable: AnyCancellable?
+    private var locationCancellable: AnyCancellable?
+    private var timerCancellable: AnyCancellable?
+    private let timerPublisher = Timer.publish(every: 1.0, on: .main, in: .default).autoconnect()
     
     init(locationPublisher: AnyPublisher<CLLocation, Never>) {
         self.locationPublisher = locationPublisher
         self.subscribeToLocationPublisher()
-        self.scheduleTimerForDurationUpdate()
     }
     
     private func subscribeToLocationPublisher() {
-        cancellable = self.locationPublisher.sink { [weak self] location in
+        locationCancellable = self.locationPublisher.sink { [weak self] location in
             guard let self = self else { return }
   
             self.updateDistance(location: location)
@@ -46,8 +51,8 @@ class MovementViewModel: ObservableObject {
         }
     }
     
-    private func scheduleTimerForDurationUpdate() {
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+    private func startDurationUpdateTimer() {
+        timerCancellable = timerPublisher.sink { [weak self] _ in
             self?.updateDuration()
         }
     }
@@ -78,6 +83,10 @@ class MovementViewModel: ObservableObject {
         } else {
             self.duration = ""
         }
+    }
+    
+    private func stopDurationUpdateTimer() {
+        timerCancellable?.cancel()
     }
 }
 
