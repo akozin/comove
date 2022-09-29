@@ -24,6 +24,7 @@ class MovementViewModel: ObservableObject {
             if isWorkoutStarted {
                 startDurationUpdateTimer()
             } else {
+                resetDistance()                
                 stopDurationUpdateTimer()
             }
         }
@@ -38,7 +39,7 @@ class MovementViewModel: ObservableObject {
     init(locationPublisher: AnyPublisher<CLLocation, Never>) {
         self.locationPublisher = locationPublisher
         self.updateSpeedAndPace(speed: 0)
-        self.updateDistance(location: nil)
+        self.resetDistance()
         self.subscribeToLocationPublisher()
     }
     
@@ -57,6 +58,11 @@ class MovementViewModel: ObservableObject {
         timerCancellable = timerPublisher.sink { [weak self] _ in
             self?.updateDuration()
         }
+    }
+    
+    private func resetDistance() {
+        distanceValue = 0
+        updateDistance(location: nil)
     }
     
     private func updateDistance(location currentLocation: CLLocation?) {
