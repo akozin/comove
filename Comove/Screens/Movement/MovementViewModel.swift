@@ -16,10 +16,10 @@ class MovementViewModel: ObservableObject {
     @Published var duration: String = ""
     @Published var distance: String = ""
     
-    private var movementStartDate: Date?
+    private var workoutStartDate: Date?
     @Published var isWorkoutStarted: Bool = false {
         didSet {
-            movementStartDate = Date()
+            workoutStartDate = Date()
             updateDuration()
             if isWorkoutStarted {
                 startDurationUpdateTimer()
@@ -37,6 +37,7 @@ class MovementViewModel: ObservableObject {
     
     init(locationPublisher: AnyPublisher<CLLocation, Never>) {
         self.locationPublisher = locationPublisher
+        self.updateSpeedAndPace(speed: 0)
         self.subscribeToLocationPublisher()
     }
     
@@ -45,7 +46,7 @@ class MovementViewModel: ObservableObject {
             guard let self = self else { return }
   
             self.updateDistance(location: location)
-            self.updateSpeedAndPace(location: location)
+            self.updateSpeedAndPace(speed: location.speed)
             
             self.lastObtainedLocation = location
         }
@@ -66,10 +67,9 @@ class MovementViewModel: ObservableObject {
         }
     }
     
-    private func updateSpeedAndPace(location: CLLocation) {
-        guard location.speed >= 0 else { return }
+    private func updateSpeedAndPace(speed speedValue: CLLocationSpeed) {
+        guard speedValue >= 0 else { return }
         
-        let speedValue = location.speed
         let speedFormatter = SpeedFormatter()
         self.speed = speedFormatter.formatSpeed(speedValue)
         let paceFormatter = PaceFormatter()
@@ -78,7 +78,7 @@ class MovementViewModel: ObservableObject {
     
     private func updateDuration() {
         let formatter = DurationFormatter()
-        if let startDate = movementStartDate {
+        if let startDate = workoutStartDate {
             self.duration = formatter.formatDuration(movementStartDate: startDate)
         } else {
             self.duration = ""
@@ -121,7 +121,10 @@ fileprivate class PaceFormatter {
     private var kDefaultFormattedPace = "0"
     
     func formatPace(speed: CLLocationSpeed) -> String {
-        guard speed > 0 else { return "" }
+        guard speed > 0 else {
+            let unit = paceMeasurementUnit()
+            return "\(kDefaultFormattedPace) \(unit)"
+        }
         
         let pace = pace(speed: speed)
         let paceNumber = NSNumber(floatLiteral: pace)

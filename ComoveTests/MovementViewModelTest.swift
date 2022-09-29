@@ -23,14 +23,14 @@ class MovementViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.speed, "\(milesPerHourSpeed) mph")
     }
     
-    func testSpeed_withNegativeValue_shouldEqualsEmptyString() {
+    func testSpeed_withNegativeValue_shouldEqualsZero() {
         // given
         let invalidSpeed: CLLocationSpeed = -25
         let location = makeLocation(speed: invalidSpeed)
         // when
         let viewModel = MovementViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
         // then
-        XCTAssertEqual(viewModel.speed, "")
+        XCTAssertEqual(viewModel.speed, "0 mph")
     }
     
     func testPace_withPosiviteSpeed_shouldBeCalculatedProperly() {
@@ -44,14 +44,14 @@ class MovementViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.pace, "\(minPerMilePace) min/mile")
     }
 
-    func testPace_withInvalidSpeed_shouldEqualsEmptyString() {
+    func testPace_withInvalidSpeed_shouldEqualsZero() {
         // given
         let invalidSpeed: CLLocationSpeed = -1
         let location = makeLocation(speed: invalidSpeed)
         // when
         let viewModel = MovementViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
         // then
-        XCTAssertEqual(viewModel.pace, "")
+        XCTAssertEqual(viewModel.pace, "0 min/mile")
     }
     
     func testDuration_withOngoingWorkout_shouldReturnDurationSinceWorkoutStart() {
@@ -102,7 +102,7 @@ class MovementViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.distance, "6.92mi")
     }
     
-    func testDuration_withStoppedWorkout_shouldBeEqualsZero() {
+    func testDuration_withStoppedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
         let viewModel = MovementViewModel(locationPublisher: publisher)
@@ -120,6 +120,46 @@ class MovementViewModelTest: XCTestCase {
         viewModel.isWorkoutStarted = true
         // then
         XCTAssertEqual(viewModel.duration, "00:00:00")
+    }
+    
+    func testSpeed_withStartedWorkout_shouldEqualsZero() {
+        // given
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
+        let viewModel = MovementViewModel(locationPublisher: publisher)
+        // when
+        viewModel.isWorkoutStarted = true
+        // then
+        XCTAssertEqual(viewModel.speed, "0 mph")
+    }
+    
+    func testSpeed_withStoppedWorkout_shouldEqualsZero() {
+        // given
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
+        let viewModel = MovementViewModel(locationPublisher: publisher)
+        // when
+        viewModel.isWorkoutStarted = false
+        // then
+        XCTAssertEqual(viewModel.speed, "0 mph")
+    }
+    
+    func testPace_withStartedWorkout_shouldEqualsZero() {
+        // given
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
+        let viewModel = MovementViewModel(locationPublisher: publisher)
+        // when
+        viewModel.isWorkoutStarted = true
+        // then
+        XCTAssertEqual(viewModel.pace, "0 min/mile")
+    }
+    
+    func testPace_withStoppedWorkout_shouldEqualsZero() {
+        // given
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
+        let viewModel = MovementViewModel(locationPublisher: publisher)
+        // when
+        viewModel.isWorkoutStarted = false
+        // then
+        XCTAssertEqual(viewModel.pace, "0 min/mile")
     }
     
     // MARK: - Private
