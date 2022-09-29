@@ -35,19 +35,19 @@ struct MovementView: View {
                     MapViewWrapper(showRoute: $viewModel.isWorkoutStarted,
                                    regionPublisher: mapRegionPublisher)
                     StartButtonView(
-                        label: viewModel.isWorkoutStarted ? "Stop" : "Start",
+                        label: viewModel.isWorkoutStarted ? "stop_button_label" : "start_button_label",
                         action: { viewModel.isWorkoutStarted.toggle() }
                     )
                     .padding(.bottom)
                 }
                 .toolbar {
                     ToolbarItem {
-                        Button("Cancel") {
+                        Button("cancel_button_label") {
                             presentationMode.wrappedValue.dismiss()
                         }
                     }
                 }
-                .navigationTitle("Workout")
+                .navigationTitle("workout_title")
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
                     Task {

@@ -6,16 +6,25 @@
   
 */
 
-/* Verb: start the workout. */
-"Start" = "Старт";
-/* Verb: stop the workout. */
-"Stop" = "Стоп";
-/* Noun: cancel the workout. */
-"Cancel" = "Отмена";
-/* Noun: title of workout screen. */
-"Workout" = "Тренировка";
-
 /* Noun: pace minute per kilometer unit value. */
 "pace_min_km_unit" = "мин/км";
 /* Noun: pace minute per mile unit value. */
 "pace_min_mile_unit" = "мин/миля";
+
+/* Noun: workout duration. */
+"duration_label" = "Длительность";
+/* Noun: workout distance. */
+"distance_label" = "Расстояние";
+/* Noun: workout pace. */
+"pace_label" = "Темп";
+/* Noun: workout speed. */
+"speed_label" = "Скорость";
+
+/* Noun: start workout button label. */
+"start_button_label" = "Старт";
+/* Noun: stop workout button label. */
+"stop_button_label" = "Стоп";
+/* Noun: cancel workout button label. */
+"cancel_button_label" = "Отмена";
+/* Noun: workout page title. */
+"workout_title" = "Тренировка";

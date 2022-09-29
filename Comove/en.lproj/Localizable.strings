@@ -10,3 +10,26 @@
 "pace_min_km_unit" = "min/km";
 /* Noun: pace minute per mile unit value. */
 "pace_min_mile_unit" = "min/mile";
+
+/* Noun: start workout button label. */
+"start_button_label" = "Start";
+/* Noun: stop workout button label. */
+"stop_button_label" = "Stop";
+
+/* Noun: workout duration. */
+"duration_label" = "Duration";
+/* Noun: workout distance. */
+"distance_label" = "Distance";
+/* Noun: workout pace. */
+"pace_label" = "Pace";
+/* Noun: workout speed. */
+"speed_label" = "Speed";
+
+/* Noun: start workout button label. */
+"start_button_label" = "Start";
+/* Noun: stop workout button label. */
+"stop_button_label" = "Stop";
+/* Noun: cancel workout button label. */
+"cancel_button_label" = "Cancel";
+/* Noun: workout page title. */
+"workout_title" = "Workout";

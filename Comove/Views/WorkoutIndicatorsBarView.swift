@@ -19,7 +19,7 @@ struct WorkoutIndicatorsBarView: View {
                 Text(duration)
                     .font(.largeTitle)
                     .bold()
-                Text("Duration")
+                Text("duration_label")
                     .font(.title3)
             }
             .padding(.bottom)
@@ -29,21 +29,21 @@ struct WorkoutIndicatorsBarView: View {
                     Text(distance)
                         .bold()
                         .padding(.bottom, 1)
-                    Text("Distance")
+                    Text("distance_label")
                 }
                 .frame(maxWidth: .infinity)
                 VStack {
                     Text(pace)
                         .bold()
                         .padding(.bottom, 1)
-                    Text("Pace")
+                    Text("pace_label")
                 }
                 .frame(maxWidth: .infinity)
                 VStack {
                     Text(speed)
                         .bold()
                         .padding(.bottom, 1)
-                    Text("Speed")
+                    Text("speed_label")
                 }
                 .frame(maxWidth: .infinity)
             }
