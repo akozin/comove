@@ -162,6 +162,26 @@ class MovementViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.pace, "0 min/mile")
     }
     
+    func testDistance_withStartedWorkout_shouldEqualsZero() {
+        // given
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
+        let viewModel = MovementViewModel(locationPublisher: publisher)
+        // when
+        viewModel.isWorkoutStarted = true
+        // then
+        XCTAssertEqual(viewModel.distance, "0.00mi")
+    }
+    
+    func testDistance_withStoppedWorkout_shouldEqualsZero() {
+        // given
+        let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
+        let viewModel = MovementViewModel(locationPublisher: publisher)
+        // when
+        viewModel.isWorkoutStarted = false
+        // then
+        XCTAssertEqual(viewModel.distance, "0.00mi")
+    }
+    
     // MARK: - Private
     
     private func makeLocation(speed: CLLocationSpeed = 2.7,

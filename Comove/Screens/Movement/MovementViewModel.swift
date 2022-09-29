@@ -38,6 +38,7 @@ class MovementViewModel: ObservableObject {
     init(locationPublisher: AnyPublisher<CLLocation, Never>) {
         self.locationPublisher = locationPublisher
         self.updateSpeedAndPace(speed: 0)
+        self.updateDistance(location: nil)
         self.subscribeToLocationPublisher()
     }
     
@@ -58,13 +59,14 @@ class MovementViewModel: ObservableObject {
         }
     }
     
-    private func updateDistance(location currentLocation: CLLocation) {
-        if let previousLocation = self.lastObtainedLocation {
+    private func updateDistance(location currentLocation: CLLocation?) {
+        if let previousLocation = self.lastObtainedLocation,
+            let currentLocation = currentLocation {
             let travelledDistance = currentLocation.distance(from: previousLocation)
             self.distanceValue += travelledDistance
-            let formatter = DistanceFormatter()
-            self.distance = formatter.formatDistance(distanceValue)
         }
+        let formatter = DistanceFormatter()
+        self.distance = formatter.formatDistance(distanceValue)
     }
     
     private func updateSpeedAndPace(speed speedValue: CLLocationSpeed) {
