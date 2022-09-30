@@ -18,11 +18,23 @@ struct ContentView: View {
     @State private var isButtonPressed = false
 
     var body: some View {
-        Button("Start") {
-            isButtonPressed.toggle()
-        }
-        .fullScreenCover(isPresented: $isButtonPressed) {
-            MovementView()
+        TabView {
+            Button("Start") {
+                isButtonPressed.toggle()
+            }
+            .fullScreenCover(isPresented: $isButtonPressed) {
+                MovementView()
+            }
+            .tabItem {
+                Image(systemName: "figure.walk")
+                Text("workout_tab_title")
+            }
+            
+            Text("Workout history")
+                .tabItem {
+                    Image(systemName: "rectangle.stack")
+                    Text("history_tab_title")
+                }
         }
     }
 
