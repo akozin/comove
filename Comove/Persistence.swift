@@ -14,8 +14,9 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newItem = WorkoutEntity(context: viewContext)
+            newItem.distance = 1000
+            newItem.duration = 60 * 60 * 60 // 1 hour
         }
         do {
             try viewContext.save()
