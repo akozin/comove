@@ -24,7 +24,7 @@ struct ContentView: View {
                 isButtonPressed.toggle()
             }
             .fullScreenCover(isPresented: $isButtonPressed) {
-                MovementView()
+                WorkoutView()
             }
             .tabItem {
                 Image(systemName: "figure.walk")

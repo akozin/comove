@@ -18,7 +18,7 @@ class MovementViewModelTest: XCTestCase {
         let milesPerHourSpeed: CLLocationSpeed = 22.4
         let location = makeLocation(speed: metersPerSecondSpeed)
         // when
-        let viewModel = MovementViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
+        let viewModel = WorkoutViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
         // then
         XCTAssertEqual(viewModel.speed, "\(milesPerHourSpeed) mph")
     }
@@ -28,7 +28,7 @@ class MovementViewModelTest: XCTestCase {
         let invalidSpeed: CLLocationSpeed = -25
         let location = makeLocation(speed: invalidSpeed)
         // when
-        let viewModel = MovementViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
+        let viewModel = WorkoutViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
         // then
         XCTAssertEqual(viewModel.speed, "0 mph")
     }
@@ -39,7 +39,7 @@ class MovementViewModelTest: XCTestCase {
         let minPerMilePace: CLLocationSpeed = 9.9
         let location = makeLocation(speed: metersPerSecondSpeed)
         // when
-        let viewModel = MovementViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
+        let viewModel = WorkoutViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
         // then
         XCTAssertEqual(viewModel.pace, "\(minPerMilePace) min/mile")
     }
@@ -49,7 +49,7 @@ class MovementViewModelTest: XCTestCase {
         let invalidSpeed: CLLocationSpeed = -1
         let location = makeLocation(speed: invalidSpeed)
         // when
-        let viewModel = MovementViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
+        let viewModel = WorkoutViewModel(locationPublisher: Just(location).eraseToAnyPublisher())
         // then
         XCTAssertEqual(viewModel.pace, "0 min/mile")
     }
@@ -57,7 +57,7 @@ class MovementViewModelTest: XCTestCase {
     func testDuration_withOngoingWorkout_shouldReturnDurationSinceWorkoutStart() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = true
         let exp = expectation(description: "")
@@ -79,7 +79,7 @@ class MovementViewModelTest: XCTestCase {
         let firstLocation = makeLocation(speed: metersPerSecondSpeed, latitude: 53.12345)
         let secondLocation = makeLocation(speed: metersPerSecondSpeed, latitude: 53.12385)
         let subject = PassthroughSubject<CLLocation, Never>()
-        let viewModel = MovementViewModel(locationPublisher: subject.eraseToAnyPublisher())
+        let viewModel = WorkoutViewModel(locationPublisher: subject.eraseToAnyPublisher())
         // when
         subject.send(firstLocation)
         subject.send(secondLocation)
@@ -94,7 +94,7 @@ class MovementViewModelTest: XCTestCase {
         let secondLocation = makeLocation(speed: metersPerSecondSpeed, latitude: 53.22345)
         // 6955
         let subject = PassthroughSubject<CLLocation, Never>()
-        let viewModel = MovementViewModel(locationPublisher: subject.eraseToAnyPublisher())
+        let viewModel = WorkoutViewModel(locationPublisher: subject.eraseToAnyPublisher())
         // when
         subject.send(firstLocation)
         subject.send(secondLocation)
@@ -105,7 +105,7 @@ class MovementViewModelTest: XCTestCase {
     func testDuration_withStoppedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = false
         // then
@@ -115,7 +115,7 @@ class MovementViewModelTest: XCTestCase {
     func testDuration_withStartedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = true
         // then
@@ -125,7 +125,7 @@ class MovementViewModelTest: XCTestCase {
     func testSpeed_withStartedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = true
         // then
@@ -135,7 +135,7 @@ class MovementViewModelTest: XCTestCase {
     func testSpeed_withStoppedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = false
         // then
@@ -145,7 +145,7 @@ class MovementViewModelTest: XCTestCase {
     func testPace_withStartedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = true
         // then
@@ -155,7 +155,7 @@ class MovementViewModelTest: XCTestCase {
     func testPace_withStoppedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = false
         // then
@@ -165,7 +165,7 @@ class MovementViewModelTest: XCTestCase {
     func testDistance_withStartedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = true
         // then
@@ -175,7 +175,7 @@ class MovementViewModelTest: XCTestCase {
     func testDistance_withStoppedWorkout_shouldEqualsZero() {
         // given
         let publisher = Empty<CLLocation, Never>().eraseToAnyPublisher()
-        let viewModel = MovementViewModel(locationPublisher: publisher)
+        let viewModel = WorkoutViewModel(locationPublisher: publisher)
         // when
         viewModel.isWorkoutStarted = false
         // then
@@ -188,7 +188,7 @@ class MovementViewModelTest: XCTestCase {
         let firstLocation = makeLocation(speed: metersPerSecondSpeed, latitude: 53.12345)
         let secondLocation = makeLocation(speed: metersPerSecondSpeed, latitude: 53.12385)
         let subject = PassthroughSubject<CLLocation, Never>()
-        let viewModel = MovementViewModel(locationPublisher: subject.eraseToAnyPublisher())
+        let viewModel = WorkoutViewModel(locationPublisher: subject.eraseToAnyPublisher())
         subject.send(firstLocation)
         subject.send(secondLocation)
         // when

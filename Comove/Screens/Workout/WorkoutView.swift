@@ -1,5 +1,5 @@
 //
-//  MovementView.swift
+//  WorkoutView.swift
 //  Comove
 //
 //  Created by akozin on 20.08.2022.
@@ -9,9 +9,9 @@ import SwiftUI
 import MapKit
 import Combine
 
-struct MovementView: View {
+struct WorkoutView: View {
     @Environment(\.presentationMode) private var presentationMode
-    @StateObject private var viewModel = MovementViewModel(
+    @StateObject private var viewModel = WorkoutViewModel(
         locationPublisher: LocationService.shared.locationPublisher
     )
     
@@ -78,7 +78,7 @@ struct MovementView: View {
 struct MovementView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MovementView()
+            WorkoutView()
         }
     }
 }

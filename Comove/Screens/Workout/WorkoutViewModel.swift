@@ -1,5 +1,5 @@
 //
-//  MovementViewModel.swift
+//  WorkoutViewModel.swift
 //  Comove
 //
 //  Created by akozin on 15.09.2022.
@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import Combine
 
-class MovementViewModel: ObservableObject {
+class WorkoutViewModel: ObservableObject {
     let locationPublisher: AnyPublisher<CLLocation, Never>
     @Published var speed: String = ""
     @Published var pace: String = ""
