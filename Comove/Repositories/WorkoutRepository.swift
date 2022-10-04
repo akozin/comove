@@ -37,7 +37,3 @@ struct LocalWorkoutRepository: WorkoutRepository {
         }
     }
 }
-
-struct FakeWorkoutRepository: WorkoutRepository {
-    func addWorkout(duration: Int32, distance: Int32) {}
-}

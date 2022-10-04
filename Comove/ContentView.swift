@@ -15,7 +15,6 @@ struct ContentView: View {
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
 //        animation: .default)
 //    private var items: FetchedResults<Workout>
-    private var a = WorkoutEntity()
     @State private var isButtonPressed = false
 
     var body: some View {
