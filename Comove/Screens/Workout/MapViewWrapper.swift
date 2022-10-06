@@ -34,17 +34,6 @@ struct MapViewWrapper: UIViewControllerRepresentable {
 
 // MARK: - Map view controller
 
-/// Abstract map view.
-//fileprivate protocol MapView: UIView {
-//    var frame: CGRect { get set }
-//    var region: MapRegion { get set }
-//    var showsUserLocation: Bool { get set }
-//    func addOverlay(_ overlay: MKOverlay)
-//    func removeOverlay(_ overlay: MKOverlay)
-//}
-//
-//extension MKMapView: MapView {}
-
 class MapViewController: UIViewController {
     private let mapView: MKMapView
     private var cancellable: Cancellable?
