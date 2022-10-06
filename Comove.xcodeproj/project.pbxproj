@@ -29,6 +29,9 @@
 		6FD6A11828EB3A3700ED8AA7 /* WorkoutRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD6A11728EB3A3700ED8AA7 /* WorkoutRepositoryTest.swift */; };
 		6FD6A17928EC7EC400ED8AA7 /* WorkoutEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD6A10F28EB06DE00ED8AA7 /* WorkoutEntity+CoreDataProperties.swift */; };
 		6FD6A17A28EC7EC600ED8AA7 /* WorkoutEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD6A10E28EB06DE00ED8AA7 /* WorkoutEntity+CoreDataClass.swift */; };
+		6FD6A17C28EC908E00ED8AA7 /* WorkoutHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD6A17B28EC908E00ED8AA7 /* WorkoutHistoryView.swift */; };
+		6FD6A17E28EEAD1600ED8AA7 /* WorkoutHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD6A17D28EEAD1600ED8AA7 /* WorkoutHistoryViewModel.swift */; };
+		6FD6A18128EEC42300ED8AA7 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD6A18028EEC42300ED8AA7 /* Formatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		6FD6A10F28EB06DE00ED8AA7 /* WorkoutEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6FD6A11528EB2E9F00ED8AA7 /* WorkoutRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRepository.swift; sourceTree = "<group>"; };
 		6FD6A11728EB3A3700ED8AA7 /* WorkoutRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRepositoryTest.swift; sourceTree = "<group>"; };
+		6FD6A17B28EC908E00ED8AA7 /* WorkoutHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryView.swift; sourceTree = "<group>"; };
+		6FD6A17D28EEAD1600ED8AA7 /* WorkoutHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryViewModel.swift; sourceTree = "<group>"; };
+		6FD6A18028EEC42300ED8AA7 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +162,7 @@
 		6F6FFADD28B0DCAF00DABF49 /* Comove */ = {
 			isa = PBXGroup;
 			children = (
+				6FD6A17F28EEC41A00ED8AA7 /* Utils */,
 				6F6E115C28D1B58700B50B92 /* Views */,
 				6FD6A11428EB2E8400ED8AA7 /* Repositories */,
 				6F98001B28CCA4D800AB107C /* Services */,
@@ -226,6 +233,8 @@
 		6FD6A11328EB1ACF00ED8AA7 /* WorkoutHistory */ = {
 			isa = PBXGroup;
 			children = (
+				6FD6A17B28EC908E00ED8AA7 /* WorkoutHistoryView.swift */,
+				6FD6A17D28EEAD1600ED8AA7 /* WorkoutHistoryViewModel.swift */,
 			);
 			path = WorkoutHistory;
 			sourceTree = "<group>";
@@ -236,6 +245,14 @@
 				6FD6A11528EB2E9F00ED8AA7 /* WorkoutRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		6FD6A17F28EEC41A00ED8AA7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6FD6A18028EEC42300ED8AA7 /* Formatters.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,9 +388,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F6E116028D1B5B700B50B92 /* StartButtonView.swift in Sources */,
+				6FD6A17E28EEAD1600ED8AA7 /* WorkoutHistoryViewModel.swift in Sources */,
 				6F98001D28CCA4EE00AB107C /* LocationService.swift in Sources */,
 				6FD6A17928EC7EC400ED8AA7 /* WorkoutEntity+CoreDataProperties.swift in Sources */,
 				6F6E116C28D3731600B50B92 /* WorkoutViewModel.swift in Sources */,
+				6FD6A17C28EC908E00ED8AA7 /* WorkoutHistoryView.swift in Sources */,
 				6F6E116A28D3330B00B50B92 /* WorkoutIndicatorsBarView.swift in Sources */,
 				6F6FFAEB28B0DCB300DABF49 /* Comove.xcdatamodeld in Sources */,
 				6F6E115928CF6C3D00B50B92 /* MapRouteRenderer.swift in Sources */,
@@ -384,6 +403,7 @@
 				6F6FFAE128B0DCAF00DABF49 /* ContentView.swift in Sources */,
 				6FD6A17A28EC7EC600ED8AA7 /* WorkoutEntity+CoreDataClass.swift in Sources */,
 				6F6FFADF28B0DCAF00DABF49 /* ComoveApp.swift in Sources */,
+				6FD6A18128EEC42300ED8AA7 /* Formatters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
