@@ -35,3 +35,10 @@
 "workout_tab_title" = "Тренировка";
 /* Noun: workout history page tab title. */
 "history_tab_title" = "История";
+
+/* Noun: workout date label on workout history page. */
+"workout_date_label" = "Дата: %@";
+/* Noun: workout duration label on workout history page. */
+"workout_duration_label" = "Длительность: %@";
+/* Noun: workout distance label on workout history page. */
+"workout_distance_label" = "Расстояние: %@";

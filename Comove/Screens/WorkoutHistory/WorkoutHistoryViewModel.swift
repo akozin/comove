@@ -22,17 +22,23 @@ struct WorkoutHistoryViewModel {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
-        return formatter.string(from: date)
+        let formattedDate = formatter.string(from: date)
+        let format = NSLocalizedString("workout_date_label", comment: "")
+        return NSString(format: format as NSString, formattedDate) as String
     }
     
     func formatDuration(_ duration: Int32) -> String {
         let formatter = DurationFormatter()
         let convertedDuration = TimeInterval(duration)
-        return formatter.formatDuration(durationValue: convertedDuration)
+        let formattedDuration = formatter.formatDuration(durationValue: convertedDuration)
+        let format = NSLocalizedString("workout_duration_label", comment: "")
+        return NSString(format: format as NSString, formattedDuration) as String
     }
     
     func formatDistance(_ distance: Int32) -> String {
         let formatter = DistanceFormatter()
-        return formatter.formatDistance(CLLocationDistance(distance))
+        let formattedDistance = formatter.formatDistance(CLLocationDistance(distance))
+        let format = NSLocalizedString("workout_distance_label", comment: "")
+        return NSString(format: format as NSString, formattedDistance) as String
     }
 }

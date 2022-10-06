@@ -40,3 +40,10 @@
 "workout_tab_title" = "Workout";
 /* Noun: workout history page tab title. */
 "history_tab_title" = "History";
+
+/* Noun: workout date label on workout history page. */
+"workout_date_label" = "Date: %@";
+/* Noun: workout duration label on workout history page. */
+"workout_duration_label" = "Duration: %@";
+/* Noun: workout distance label on workout history page. */
+"workout_distance_label" = "Distance: %@";

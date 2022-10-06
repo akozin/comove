@@ -23,9 +23,9 @@ struct WorkoutHistoryView: View {
                     let duration = viewModel.formatDuration(workout.duration)
                     let distance = viewModel.formatDistance(workout.distance)
                     HStack {
-                        Text("Date: \(date)")
-                        Text("Duration: \(duration)")
-                        Text("Distance: \(distance)")
+                        Text(date)
+                        Text(duration)
+                        Text(distance)
                     }
                 }
             }
