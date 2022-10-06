@@ -3,8 +3,9 @@
     <entity name="WorkoutEntity" representedClassName="WorkoutEntity" syncable="YES">
         <attribute name="distance" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="duration" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="WorkoutEntity" positionX="-63" positionY="-9" width="128" height="59"/>
+        <element name="WorkoutEntity" positionX="-63" positionY="-9" width="128" height="74"/>
     </elements>
 </model>

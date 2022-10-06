@@ -28,6 +28,7 @@ struct LocalWorkoutRepository: WorkoutRepository {
         let workout = WorkoutEntity(context: context)
         workout.distance = distance
         workout.duration = duration
+        workout.timestamp = Date()
         do {
             try context.save()
             print("Workout saved!")

@@ -17,6 +17,7 @@ extension WorkoutEntity {
 
     @NSManaged public var distance: Int32
     @NSManaged public var duration: Int32
+    @NSManaged public var timestamp: Date
     public var speed: Int32 {
         return 0
     }
