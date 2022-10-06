@@ -30,7 +30,7 @@ struct ContentView: View {
                 Text("workout_tab_title")
             }
             
-            Text("Workout history")
+            WorkoutHistoryView()
                 .tabItem {
                     Image(systemName: "rectangle.stack")
                     Text("history_tab_title")

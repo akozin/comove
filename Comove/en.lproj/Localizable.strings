@@ -33,6 +33,8 @@
 "cancel_button_label" = "Cancel";
 /* Noun: workout page title. */
 "workout_title" = "Workout";
+/* Noun: workout history page title.*/
+"workout_history_title" = "History";
 
 /* Noun: workout page tab title. */
 "workout_tab_title" = "Workout";

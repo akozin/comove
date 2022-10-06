@@ -8,9 +8,10 @@
 import Foundation
 import CoreLocation
 import Combine
+import CoreData
 
 class WorkoutViewModel: ObservableObject {
-    let locationPublisher: AnyPublisher<CLLocation, Never>
+    private let locationPublisher: AnyPublisher<CLLocation, Never>
     @Published var speed: String = ""
     @Published var pace: String = ""
     @Published var duration: String = ""
@@ -24,6 +25,7 @@ class WorkoutViewModel: ObservableObject {
             if isWorkoutStarted {
                 startDurationUpdateTimer()
             } else {
+                
                 resetDistance()                
                 stopDurationUpdateTimer()
             }
@@ -41,6 +43,15 @@ class WorkoutViewModel: ObservableObject {
         self.updateSpeedAndPace(speed: 0)
         self.resetDistance()
         self.subscribeToLocationPublisher()
+    }
+    
+    /// Saves current workout.
+    func saveWorkout(context: NSManagedObjectContext) {
+        guard let startDate = workoutStartDate else { return }
+
+        let value = durationValue(startDate: startDate)
+        let repo = LocalWorkoutRepository(context: context)
+        repo.addWorkout(duration: Int32(value), distance: Int32(distanceValue))
     }
     
     private func subscribeToLocationPublisher() {

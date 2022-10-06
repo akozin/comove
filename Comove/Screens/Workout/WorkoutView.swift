@@ -11,6 +11,8 @@ import Combine
 
 struct WorkoutView: View {
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.managedObjectContext) private var viewContext
+
     @StateObject private var viewModel = WorkoutViewModel(
         locationPublisher: LocationService.shared.locationPublisher
     )
@@ -36,7 +38,15 @@ struct WorkoutView: View {
                                    regionPublisher: mapRegionPublisher)
                     StartButtonView(
                         label: viewModel.isWorkoutStarted ? "stop_button_label" : "start_button_label",
-                        action: { viewModel.isWorkoutStarted.toggle() }
+                        action: {
+                            if viewModel.isWorkoutStarted {
+                                viewModel.saveWorkout(context: viewContext)
+                                viewModel.isWorkoutStarted.toggle()
+                                presentationMode.wrappedValue.dismiss()
+                            } else {
+                                viewModel.isWorkoutStarted.toggle()
+                            }
+                        }
                     )
                     .padding(.bottom)
                 }

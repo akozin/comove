@@ -28,6 +28,8 @@
 "cancel_button_label" = "Отмена";
 /* Noun: workout page title. */
 "workout_title" = "Тренировка";
+/* Noun: workout history page title.*/
+"workout_history_title" = "История";
 
 /* Noun: workout page tab title. */
 "workout_tab_title" = "Тренировка";
